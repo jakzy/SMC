@@ -1,0 +1,62 @@
+%start Map1::Start
+%class AppClass
+
+%map Map1
+%%
+// State		Transition		End State		Action(s)
+
+Default{
+                Start           Start           {ClearSMC();}
+                UpperLiter      Error			{Unacceptable();}
+                Liter			Error			{Unacceptable();}
+                Digit			Error			{Unacceptable();}
+                Dollar			Error			{Unacceptable();}
+                Slash		    Error			{Unacceptable();}
+                Endl            Error			{Unacceptable();}
+                Unknown         Error			{Unacceptable();}
+
+}
+
+Start{
+                Slash [ ctxt.isCounterNotZero() ]       Server          {CounterZero();LengthInc();}
+                Slash                                   Start			{CounterInc();LengthInc();}
+                EOS				                        Error			{Unacceptable();}
+}
+
+Server {
+				UpperLiter [ ctxt.isValidServer() ]                         Server			{CounterInc();LengthInc();}
+				Digit	[ ctxt.isValidServer() and ctxt.isCounterNotZero() ]		                    Server		    {CounterInc();LengthInc();}
+				Slash [ ctxt.isValidServer() and ctxt.isValidString() and ctxt.isCounterNotZero() ]        Resource            {CounterZero();LengthInc();}
+				EOS				                                            Error			{Unacceptable();}
+}
+
+Resource {
+				UpperLiter [ ctxt.isValidName() and ctxt.isValidString() ]                         Resource			{CounterInc();LengthInc();}
+				Liter [ ctxt.isValidName() and ctxt.isValidString() ]			Resource		{CounterInc();LengthInc();}
+				Digit [ ctxt.isValidName() and ctxt.isValidString() and ctxt.isCounterNotZero() ]			Resource		{CounterInc(); LengthInc();}
+				Dollar [ ctxt.isValidName() and ctxt.isValidString() and ctxt.isCounterNotZero() ]			DollarEnding    {CounterInc();LengthInc();}
+				Slash [ ctxt.isValidName() and ctxt.isValidString() and ctxt.isCounterNotZero() ]          Path            {CounterZero();LengthInc();}
+				EOS				                                            Error			{Unacceptable();}
+}
+
+DollarEnding {
+                Slash [ ctxt.isValidName() and ctxt.isValidString() ]          Path            {CounterZero();LengthInc();}
+				EOS				                                            Error			{Unacceptable();}
+}
+
+Path {
+				UpperLiter [ ctxt.isValidName() and ctxt.isValidString() ]      Path			{CounterInc();LengthInc();}
+				Liter [ ctxt.isValidName() and ctxt.isValidString() ]			Path			{CounterInc();LengthInc();}
+				Digit [ ctxt.isValidName() and ctxt.isValidString() and ctxt.isCounterNotZero() ]			Path			{CounterInc();LengthInc();}
+				Slash [ ctxt.isValidString() and ctxt.isCounterNotZero()]                               Path            {CounterZero();LengthInc();}
+				Endl                                                        OK  			{Acceptable();}
+				EOS				                                            OK				{Acceptable();}
+}
+
+OK {}
+
+Error {
+				EOS				nil				{Unacceptable();}
+}
+
+%%

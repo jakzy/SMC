@@ -1,0 +1,270 @@
+digraph AppClass {
+
+    node
+        [shape=Mrecord width=1.5];
+
+    subgraph cluster_Map1 {
+
+        label="Map1";
+
+        //
+        // States (Nodes)
+        //
+
+        "Map1::Start"
+            [label="{Start}"];
+
+        "Map1::Server"
+            [label="{Server}"];
+
+        "Map1::Resource"
+            [label="{Resource}"];
+
+        "Map1::DollarEnding"
+            [label="{DollarEnding}"];
+
+        "Map1::Path"
+            [label="{Path}"];
+
+        "Map1::OK"
+            [label="{OK}"];
+
+        "Map1::Error"
+            [label="{Error}"];
+
+        "%start"
+            [label="" shape=circle style=filled fillcolor=black width=0.25];
+
+        //
+        // Transitions (Edges)
+        //
+
+        "Map1::Start" -> "Map1::Server"
+            [label="Slash/\l"];
+
+        "Map1::Start" -> "Map1::Start"
+            [label="Slash/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="EOS/\l"];
+
+        "Map1::Start" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::Start" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::Server" -> "Map1::Server"
+            [label="UpperLiter/\l"];
+
+        "Map1::Server" -> "Map1::Server"
+            [label="Digit/\l"];
+
+        "Map1::Server" -> "Map1::Resource"
+            [label="Slash/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="EOS/\l"];
+
+        "Map1::Server" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::Server" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::Resource" -> "Map1::Resource"
+            [label="UpperLiter/\l"];
+
+        "Map1::Resource" -> "Map1::Resource"
+            [label="Liter/\l"];
+
+        "Map1::Resource" -> "Map1::Resource"
+            [label="Digit/\l"];
+
+        "Map1::Resource" -> "Map1::DollarEnding"
+            [label="Dollar/\l"];
+
+        "Map1::Resource" -> "Map1::Path"
+            [label="Slash/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="EOS/\l"];
+
+        "Map1::Resource" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::Resource" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Path"
+            [label="Slash/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="EOS/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::DollarEnding" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::Path" -> "Map1::Path"
+            [label="UpperLiter/\l"];
+
+        "Map1::Path" -> "Map1::Path"
+            [label="Liter/\l"];
+
+        "Map1::Path" -> "Map1::Path"
+            [label="Digit/\l"];
+
+        "Map1::Path" -> "Map1::Path"
+            [label="Slash/\l"];
+
+        "Map1::Path" -> "Map1::OK"
+            [label="Endl/\l"];
+
+        "Map1::Path" -> "Map1::OK"
+            [label="EOS/\l"];
+
+        "Map1::Path" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::Path" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::OK" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::OK" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "Map1::Error" -> "Map1::Start"
+            [label="Start/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="UpperLiter/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Liter/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Digit/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Dollar/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Slash/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Endl/\l"];
+
+        "Map1::Error" -> "Map1::Error"
+            [label="Unknown/\l"];
+
+        "%start" -> "Map1::Start"
+    }
+
+}
