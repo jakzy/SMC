@@ -66,7 +66,7 @@ class AppClass:
         return self.__counter <= 32
 
     def isValidString(self):
-        return self.__length <= 100
+        return self.__length < 100
 
     def isCounterNotZero(self):
         return self.__counter > 0

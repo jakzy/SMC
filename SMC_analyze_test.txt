@@ -1,3 +1,0 @@
-+ \\SERV\IsOk1\path1\
-- 
-- \\SERV1\112\path1\path1\
