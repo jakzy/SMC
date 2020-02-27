@@ -1,2 +1,7 @@
 # Project exclude paths
 /venv/
+/SMC_time.txt
+/SMC_analyze.txt
+/SMC_servers.txt
+/SMC_servers_test.txt
+/SMC_time_test.txt
